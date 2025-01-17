@@ -36,6 +36,13 @@ public class BooksController {
         }
     }
 
+
+    @GetMapping("/books/search")
+    public ResponseEntity<List<Books>> searchBooks(@RequestParam String keyword){
+        List<Books> books=service.searchBooks(keyword);
+        return new ResponseEntity<>(books,HttpStatus.OK);
+    }
+
     @PostMapping("/books")
     public ResponseEntity<String> addBook(@RequestBody Books book) {
         Optional<Books> addBook=service.findById(book.getId());

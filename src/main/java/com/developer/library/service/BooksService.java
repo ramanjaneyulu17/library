@@ -34,4 +34,8 @@ public class BooksService {
     public void deleteBook(int id) {
         repo.deleteById(id);
     }
+
+    public List<Books> searchBooks(String keyword) {
+        return repo.searchBooks(keyword);
+    }
 }
