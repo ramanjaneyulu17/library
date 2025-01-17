@@ -33,12 +33,12 @@ public class UsersController {
 
     @PostMapping("/users")
     public ResponseEntity<String> addUser(@RequestBody Users user) {
-        Optional<Users> addUser=service.findById(user.getId());
+        Optional<Users> addUser=service.findByEmail(user.getEmail());
         if (addUser.isEmpty()) {
             service.addUser(user);
             return new ResponseEntity<>("added",HttpStatus.OK);
         }else {
-            return new ResponseEntity<>("can not added", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Email is already enrolled", HttpStatus.BAD_REQUEST);
         }
     }
 

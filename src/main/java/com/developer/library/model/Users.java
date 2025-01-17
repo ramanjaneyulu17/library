@@ -1,5 +1,6 @@
 package com.developer.library.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import org.springframework.stereotype.Component;
@@ -11,6 +12,8 @@ public class Users {
     @Id
     private int id;
     private String name;
+
+    @Column(unique = true)
     private String email;
 
     public Users() {
