@@ -39,7 +39,7 @@ public class BooksController {
     @PostMapping("/books")
     public ResponseEntity<String> addBook(@RequestBody Books book) {
         Optional<Books> addBook=service.findById(book.getId());
-        if (addBook.isEmpty()==true) {
+        if (addBook.isEmpty()) {
             service.addBook(book);
             return new ResponseEntity<>("added",HttpStatus.OK);
         }else {
@@ -47,14 +47,14 @@ public class BooksController {
         }
     }
 
-    @PutMapping("/books")
-    public ResponseEntity<String> updateBook(@RequestBody Books book){
-        Optional<Books> books=service.findById(book.getId());
-        if(books.isPresent()) {
-            service.updateBook(book);
-           return new ResponseEntity<>("Updated",HttpStatus.OK);
+    @PutMapping("/books/{id}")
+    public ResponseEntity<String> updateBook(@PathVariable int id, @RequestBody Books book){
+        Optional<Books> books=service.findById(id);
+        if(books.isEmpty()){
+           return new ResponseEntity<>("Not Found",HttpStatus.NOT_FOUND);
         }else {
-            return new ResponseEntity<>("Not found",HttpStatus.NOT_FOUND);
+            service.updateBook(id,book);
+            return new ResponseEntity<>("Updated",HttpStatus.OK);
         }
     }
     @DeleteMapping("/books/{id}")
