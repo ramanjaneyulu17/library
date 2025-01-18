@@ -6,11 +6,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface BooksRepo extends JpaRepository<Books,Integer>{
 
     @Query("SELECT p from Books p WHERE LOWER(p.title) LIKE LOWER(CONCAT('%', :keyword, '%')) OR LOWER(p.author) LIKE LOWER(CONCAT('%', :keyword, '%')) OR LOWER(p.ISBN) LIKE LOWER(CONCAT('%', :keyword, '%'))")
     List<Books> searchBooks(String keyword);
+
+    @Query("SELECT b.copiesAvailable FROM Books b WHERE b.id = :id")
+    int findCopiesAvailableById(int id);
 }

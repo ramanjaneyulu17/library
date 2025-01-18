@@ -38,4 +38,8 @@ public class BooksService {
     public List<Books> searchBooks(String keyword) {
         return repo.searchBooks(keyword);
     }
+
+    public int findCopiesAvailableById(int id) {
+       return repo.findCopiesAvailableById(id);
+    }
 }

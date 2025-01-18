@@ -15,13 +15,13 @@ public class Books {
     private String title;
     private String author;
     private String ISBN;
-    private String copiesAvailable;
+    private int copiesAvailable;
     private String totalCopies;
 
     public Books() {
     }
 
-    public Books(int id, String title, String author, String ISBN, String copiesAvailable, String totalCopies) {
+    public Books(int id, String title, String author, String ISBN, int copiesAvailable, String totalCopies) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -62,11 +62,11 @@ public class Books {
         this.ISBN = ISBN;
     }
 
-    public String getCopiesAvailable() {
+    public int getCopiesAvailable() {
         return copiesAvailable;
     }
 
-    public void setCopiesAvailable(String copiesAvailable) {
+    public void setCopiesAvailable(int copiesAvailable) {
         this.copiesAvailable = copiesAvailable;
     }
 

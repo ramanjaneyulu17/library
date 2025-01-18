@@ -74,4 +74,14 @@ public class BooksController {
             return new ResponseEntity<>("Not found",HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("/books/copiesAvailable/{id}")
+    public ResponseEntity<Integer> findCopiesAvailableById(@PathVariable int id){
+        Optional<Books> book=service.findById(id);
+        if(book.isEmpty()){
+            return new ResponseEntity<>(0,HttpStatus.NOT_FOUND);
+        }else {
+            return new ResponseEntity<>(service.findCopiesAvailableById(id),HttpStatus.OK);
+        }
+    }
 }
