@@ -1,14 +1,12 @@
 package com.developer.library.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import org.springframework.stereotype.Component;
 
 @Entity
 @Component
-public class Books {
+public class Book {
 
     @Id
     private int id;
@@ -16,12 +14,12 @@ public class Books {
     private String author;
     private String ISBN;
     private int copiesAvailable;
-    private String totalCopies;
+    private int totalCopies;
 
-    public Books() {
+    public Book() {
     }
 
-    public Books(int id, String title, String author, String ISBN, int copiesAvailable, String totalCopies) {
+    public Book(int id, String title, String author, String ISBN, int copiesAvailable, int totalCopies) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -70,11 +68,11 @@ public class Books {
         this.copiesAvailable = copiesAvailable;
     }
 
-    public String getTotalCopies() {
+    public int getTotalCopies() {
         return totalCopies;
     }
 
-    public void setTotalCopies(String totalCopies) {
+    public void setTotalCopies(int totalCopies) {
         this.totalCopies = totalCopies;
     }
 }

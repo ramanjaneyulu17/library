@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-public class UsersController {
+public class UserController {
 
     @Autowired
     private UsersService service;
@@ -32,10 +32,10 @@ public class UsersController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<String> addUser(@RequestBody Users user) {
-        Optional<Users> addUser=service.findByEmail(user.getEmail());
+    public ResponseEntity<String> addUser(@RequestBody Users users) {
+        Optional<Users> addUser=service.findByEmail(users.getEmail());
         if (addUser.isEmpty()) {
-            service.addUser(user);
+            service.addUser(users);
             return new ResponseEntity<>("added",HttpStatus.OK);
         }else {
             return new ResponseEntity<>("Email is already enrolled", HttpStatus.BAD_REQUEST);
@@ -43,12 +43,12 @@ public class UsersController {
     }
 
     @PutMapping("/users/{id}")
-    public ResponseEntity<String> updateUser(@PathVariable int id, @RequestBody Users user){
+    public ResponseEntity<String> updateUser(@PathVariable int id, @RequestBody Users users){
         Optional<Users> findUser=service.findById(id);
         if(findUser.isEmpty()){
             return new ResponseEntity<>("Not Found",HttpStatus.NOT_FOUND);
         }else {
-            service.updateUser(id,user);
+            service.updateUser(id, users);
             return new ResponseEntity<>("Updated",HttpStatus.OK);
         }
     }

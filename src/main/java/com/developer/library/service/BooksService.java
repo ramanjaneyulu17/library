@@ -1,7 +1,7 @@
 package com.developer.library.service;
 
-import com.developer.library.model.Books;
-import com.developer.library.repository.BooksRepo;
+import com.developer.library.model.Book;
+import com.developer.library.repository.BookRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,21 +12,21 @@ import java.util.Optional;
 public class BooksService {
 
     @Autowired
-    private BooksRepo repo;
+    private BookRepo repo;
 
-    public Books addBook(Books book) {
+    public Book addBook(Book book) {
         return repo.save(book);
     }
 
-    public List<Books> getAllBooks() {
+    public List<Book> getAllBooks() {
         return repo.findAll();
     }
 
-    public Optional<Books> findById(int id) {
+    public Optional<Book> findById(int id) {
         return repo.findById(id);
     }
 
-    public void updateBook(int id, Books book) {
+    public void updateBook(int id, Book book) {
             book.setId(id);
             repo.save(book);
     }
@@ -35,8 +35,8 @@ public class BooksService {
         repo.deleteById(id);
     }
 
-    public List<Books> searchBooks(String keyword) {
-        return repo.searchBooks(keyword);
+    public List<Book> searchBooks(String keyword) {
+        return repo.findByKeywordContainingIgnoreCase(keyword);
     }
 
     public int findCopiesAvailableById(int id) {

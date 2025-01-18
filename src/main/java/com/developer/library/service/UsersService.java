@@ -1,7 +1,7 @@
 package com.developer.library.service;
 
 import com.developer.library.model.Users;
-import com.developer.library.repository.UsersRepo;
+import com.developer.library.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ import java.util.Optional;
 public class UsersService {
 
     @Autowired
-    private UsersRepo repo;
+    private UserRepo repo;
 
     public List<Users> getAllUsers() {
         return repo.findAll();
@@ -22,13 +22,13 @@ public class UsersService {
         return repo.findById(id);
     }
 
-    public void addUser(Users user) {
-        repo.save(user);
+    public void addUser(Users users) {
+        repo.save(users);
     }
 
-    public void updateUser(int id, Users user) {
-        user.setId(id);
-        repo.save(user);
+    public void updateUser(int id, Users users) {
+        users.setId(id);
+        repo.save(users);
     }
 
     public void deleteUser(int id) {
