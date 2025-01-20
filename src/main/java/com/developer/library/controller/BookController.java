@@ -1,7 +1,7 @@
 package com.developer.library.controller;
 
 import com.developer.library.model.Book;
-import com.developer.library.service.BooksService;
+import com.developer.library.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import java.util.Optional;
 public class BookController {
 
     @Autowired
-    private BooksService service;
+    private BookService service;
 
     @GetMapping("/")
     public String welcome(){
